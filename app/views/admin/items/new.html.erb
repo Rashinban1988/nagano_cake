@@ -1,2 +1,42 @@
-<h1>Admin::Items#new</h1>
-<p>Find me in app/views/admin/items/new.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <h1>商品マスタ登録画面</h1>
+      <br>
+      <%= form_with model: @item, url: admin_items_path do |f| %>
+          <div class="row">
+              <div class="col-xs-6">
+                  <div class="form-group">
+                      <%= f.label :genre_id, 'ジャンル' %>
+                      <%= f.collection_select :genre_id, Genre.all, :id, :name, prompt: "選択してください" %>
+                  </div>
+                  <div class="form-group form-group-lg">
+                      <%= f.label :name, '商品名　' %>
+                      <%= f.text_field :name %>
+                  </div>
+                  <div class="form-group form-group-lg">
+                      <%= f.label :introduction, '商品説明' %>
+                      <%= f.text_area :introduction %>
+                  </div>
+                  <div class="form-group">
+                      <%= f.label :price, '税抜価格' %>
+                      <%= f.number_field :price %>円
+                  </div>
+                  <div class="form-group">
+                      <%= f.label :is_active, '販売ステータス' %>
+                      <%= f.select :is_active, {
+                          "販売中": true,
+                          "売切": false
+                      } %>
+                  </div>
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-xs-4 col-xs-offset-8">
+                  <%= f.submit "新規登録", class: "btn btn-primary" %>
+              </div>
+          </div>
+      <% end %>
+    </div>
+  </div>
+</div>

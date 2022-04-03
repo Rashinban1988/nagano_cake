@@ -1,2 +1,23 @@
-<h1>Admin::Genres#edit</h1>
-<p>Find me in app/views/admin/genres/edit.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <h1>ジャンル編集</h1>
+      <br>
+      <div class="form-horizontal" role="form">
+        <%= form_with url: admin_genre_path(@genre.id), method: :patch do |f| %>
+          <div>
+            <td>ID:<%= @genre.id %>
+            
+            </td>
+            <td>現在の名前:<%= @genre.name %></td>
+          </div>
+          <div class="form-group">
+            <%= f.label :name, "変更する名前を入力"%>
+            <%= f.text_field :name, autofocus: true %>
+            <%= f.submit "情報更新", class: "btn btn-primary" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

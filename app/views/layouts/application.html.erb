@@ -5,12 +5,29 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+    <header id="header" class="navbar navbar-light bg-light">
+      <div class="container">
+        <nav class="nav navbar-light navbar-left">
+          <nav class="clearfix">
+            <ul class="nav nav-pills navbar-light navbar-right">
+              <li>
+                <%= link_to "商品一覧", admin_items_path, :style=>"color:black;" %>
+              </li>
+              <li>
+                <%= link_to "ジャンル一覧", admin_genres_path, :style=>"color:black;" %>
+              </li>
+            </ul>
+          </nav>
+        </nav>
+      </div>
+    </header>
     <%= yield %>
   </body>
 </html>

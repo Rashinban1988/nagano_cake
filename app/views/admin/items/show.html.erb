@@ -1,2 +1,51 @@
-<h1>Admin::Items#show</h1>
-<p>Find me in app/views/admin/items/show.html.erb</p>
+<div class="container">
+	<div class="row">
+			<h1>商品詳細</h1>
+	</div>
+
+	<div class="row">
+		<div class="col-xs-8">
+			<div class="table-responsive">
+				<table class="table text-nowrap">
+					<tbody>
+						<tr>
+							<td>商品名</td>
+							<td>
+								<%= @item.name %>
+							</td>
+						</tr>
+						<tr>
+							<td>商品説明</td>
+							<td>
+								<%= @item.introduction %>
+							</td>
+						</tr>
+						<tr>
+							<td>ジャンル</td>
+							<td>
+								<%= @item.genre.name %>
+							</td>
+						</tr>
+						<tr>
+							<td>税抜価格</td>
+							<td>
+								<%= @item.price %>円
+							</td>
+						</tr>
+						<tr>
+							<td>販売ステータス</td>
+							<td>
+								<% if @item.validate == true %>
+									<%# tdで囲まれているため<%=>の削除 %>
+									販売中
+								<% else %>
+									売り切れ
+								<% end %>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
