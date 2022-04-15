@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="row">
+    <h4>ユーザー編集</h4>
+  </div>
+
+  <div class="row">
+    <%= form_with model: @customer, url: admin_customer_path(@customer.id), method: :patch do |f| %>
+      <div class="col-xs-8">
+        <p>姓 </br><%= f.text_field :last_name %></p>
+        <p>名 </br><%= f.text_field :first_name %></p>
+        <p>セイ </br><%= f.text_field :last_name_kana %></p>
+        <p>メイ </br><%= f.text_field :first_name_kana %></p>
+        <p>郵便番号(ハイフンなし半角　例：3770000)</br><%= f.text_field :postal_code %></p>
+        <p>住所 </br><%= f.text_area :address %></p>
+        <p>電話番号(ハイフンなし半角　例：08012341234) </br><%= f.text_field :telephone_number %></p>
+        <!--<p>会員ステータス </br><%= f.select :is_deleted, { "退会済み": true, "会員": false } %> </p>-->
+        <%= f.submit "変更を保存", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+</div>

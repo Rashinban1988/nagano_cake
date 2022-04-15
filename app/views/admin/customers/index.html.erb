@@ -1,0 +1,38 @@
+<div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+          <table class="table">
+            <tr>
+              <td><strong>ユーザー名</strong></td>
+              <td><strong>ユーザー名(カナ)</strong></td>
+              <td><strong>メールアドレス</strong></td>
+              <td><strong>郵便番号</strong></td>
+              <td><strong>住所</strong></td>
+              <td><strong>電話番号</strong></td>
+              <td><strong>会員ステータス</strong></td>
+            </tr>
+
+            <% @customers.each do |customer| %>
+              <tr>
+                <td><%= link_to admin_customer_path(customer) do %>
+                      <%= customer.last_name %><%= customer.first_name %>
+                    <% end %>
+                </td>
+                <td><%= customer.last_name_kana %><%= customer.first_name_kana %></td>
+                <td><%= customer.email %></td>
+                <td><%= customer.postal_code %></td>
+                <td><%= customer.address %></td>
+                <td><%= customer.telephone_number %></td>
+                <% if customer.is_deleted == false %>
+                  <td>会員</td>
+                <% else %>
+                  <td>退会</td>
+                <% end %>
+              </tr>
+            <% end %>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

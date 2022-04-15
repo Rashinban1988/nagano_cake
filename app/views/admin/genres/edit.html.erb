@@ -4,10 +4,10 @@
       <h1>ジャンル編集</h1>
       <br>
       <div class="form-horizontal" role="form">
-        <%= form_with url: admin_genre_path(@genre.id), method: :patch do |f| %>
+        <%= form_with model: @genre, url: admin_genre_path(@genre.id), method: :patch do |f| %>
           <div>
             <td>ID:<%= @genre.id %>
-            
+
             </td>
             <td>現在の名前:<%= @genre.name %></td>
           </div>

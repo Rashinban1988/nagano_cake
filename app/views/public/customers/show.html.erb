@@ -1,0 +1,58 @@
+<div class="row my-3">
+		<div class="offset-sm-3">
+			<strong class="red-border px-3 pb-1">登録情報</strong>
+		</div>
+	</div>
+
+
+	<div class="row">
+	  <div class="offset-sm-4 col-sm-4">
+	    <table class="table table-borderless table-hover">
+	      <tr class="brown-border">
+		    	<td>氏名</td>
+		    	<td>
+		    		<%= @customer.last_name %>
+		    		<%= @customer.first_name %>
+		    	</td>
+	      </tr>
+	      <tr class="brown-border">
+		    	<td>フリガナ</td>
+		    	<td>
+		    		<%= @customer.last_name_kana %>
+		    		<%= @customer.first_name_kana %>
+	    		</td>
+	      </tr>
+	      <tr class="brown-border">
+		    	<td>郵便番号</td>
+		    	<td><%= @customer.postal_code %></td>
+	      </tr>
+	      <tr class="brown-border">
+		    	<td>住所</td>
+		    	<td><%= @customer.address %></td>
+	      </tr>
+	      <tr class="brown-border">
+		    	<td>電話番号</td>
+		    	<td><%= @customer.telephone_number %></td>
+	      </tr>
+	      <tr class="brown-border">
+	    		<td>メールアドレス</td>
+	        <td><%= @customer.email %></td>
+	      </tr>
+	      <!--<tr class="brown-border">-->
+	    		<!--<td>会員情報</td>-->
+	      <!--  <td>-->
+	      <!--  	<% if @customer.is_deleted == false %>-->
+	      <!--  		<p>会員</p>-->
+	      <!--  	<% else %>-->
+	      <!--  		<p>退会済み</p>-->
+	      <!--  	<% end %>-->
+	      <!-- 	</td>-->
+	      <!--</tr>-->
+	    </table>
+
+	    <div class="row">
+		    <%= link_to "編集する", edit_customer_path(@customer), class: "btn btn-primary mx-auto my-1" %>
+		    <!--<%= link_to "配送先一覧", public_addresses_path(@customer), class: "btn btn-primary mx-auto my-1" %>-->
+		  </div>
+	</div>
+</div>

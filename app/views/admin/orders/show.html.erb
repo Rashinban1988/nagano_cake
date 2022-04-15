@@ -1,0 +1,58 @@
+<div class="container">
+	<div class="row">
+			<h1>商品詳細</h1>
+	</div>
+
+	<div class="row">
+		<div class="col-xs-8">
+			<div class="table-responsive">
+				<table class="table text-nowrap">
+					<tbody>
+						<tr>
+							<td>購入者</td>
+							<td>
+								<%= @order.customer.last_name %><%= @order.customer.first_name %>
+							</td>
+						</tr>
+						<tr>
+							<td>注文日</td>
+							<td>
+								<%= @order.created_at.strftime("%Y-%m-%d %H:%M") %>
+							</td>
+						</tr>
+						<tr>
+							<td>配送先氏名</td>
+							<td>
+								<%= @order.shipping_name %>
+							</td>
+						</tr>
+						<tr>
+							<td>配送先郵便番号</td>
+							<td>
+								〒<%= @order.shipping_postal_code %>
+							</td>
+						</tr>
+						<tr>
+							<td>配送先住所</td>
+							<td>
+								<%= @order.shipping_postal_code %>
+							</td>
+						</tr>
+						<tr>
+							<td>支払方法</td>
+							<td>
+								<%= @order.amount_billed %>
+							</td>
+						</tr>
+						<tr>
+							<td>料金</td>
+							<td>
+								<%= @order.claimed %>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

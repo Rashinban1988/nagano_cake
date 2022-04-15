@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="row">
+    <h4>退会確認画面</h4>
+  </div>
+
+  <!--<div class="row">-->
+  <!--  <%= form_with model: @customer, url: unsubscribe_confirmation_path(@customer), method: :patch do |f| %>-->
+  <!--    <div class="col-xs-8">-->
+  <!--      <p><%= f.select :is_deleted, { "退会する": true, "退会をやめる": false } %></p>-->
+  <!--      <%= f.submit "最終確認", class: "btn btn-sm btn-danger" %>-->
+  <!--      <%= link_to "最終確認", unsubscribe_path(@customer), method: :patch, class: "btn btn-sm btn-danger" %>-->
+  <!--    </div>-->
+  <!--  <% end %>-->
+  <!--</div>-->
+  <div class="row">
+    <div class="offset-3 col-2">
+    <%= link_to "退会しない" ,customer_path(current_customer), class: "btn btn-sm btn-outline-danger" %>
+    </div>
+    <div class="offset-2 col-2">
+    <%= link_to "退会する" , unsubscribe_path(@customer),method: :patch, class: "btn btn-sm btn-outline-danger", data: { confirm: "退会するとこのユーザー情報はみれなくなります。本当に退会しますか？" } %>
+    </div>
+  </div>
+</div>
