@@ -1,9 +1,6 @@
 Rails.application.routes.draw do
 
-  namespace :public do
-    get 'items/index'
-    get 'items/show'
-  end
+
   namespace :admin do
 
     resources :genres, only: [:index, :create, :edit, :update]
@@ -14,13 +11,6 @@ Rails.application.routes.draw do
 
   end
 
-  namespace :public do
-
-    resources :addresses, only: [:index, :edit, :create, :update, :destroy]
-    resources :items, only: [:index, :show]
-
-  end
-
 
   get '/admin' => 'admin/homes#top'
 
@@ -28,11 +18,21 @@ Rails.application.routes.draw do
 
   #顧客情報public
   get '/about' => 'public/homes#about'
+
   get '/customers/my_page/:id' => "public/customers#show", as: "customer"
   get '/customers/my_pages/:id/edit' => "public/customers#edit", as: "edit_customer"
   patch '/customers/my_pages/:id' => "public/customers#update", as: "update_customer"
   get '/customers/my_pages/:id/unsubscribe_confirmation' => "public/customers#unsubscribe_confirmation", as: "unsubscribe_confirmation"
   patch '/customers/my_pages/:id/is_deleted' => "public/customers#unsubscribe", as: "unsubscribe"
+
+  get '/addresses' => "public/addresses#index", as: "addresses"
+  get '/addresses/:id/edit' => "public/addresses#edit", as: "edit_addresses"
+  post '/addresses' => "public/addresses#create"
+  patch '/addresses/:id' => "public/addresses#update"
+  delete '/addresses/:id' => "public/addresses#destroy"
+
+  get '/items' => "public/items#index", as: "items"
+  get '/items/:id' => "public/items#show", as: "item"
 
   # 顧客用
   # URL /customers/sign_in ...

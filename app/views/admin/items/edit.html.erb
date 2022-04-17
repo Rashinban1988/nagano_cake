@@ -4,8 +4,8 @@
   </div>
 
   <div class="row">
-    <%= form_with model: @item, url: admin_item_path do |f| %>
-      <div class="col-xs-8">
+    <%= form_with model: @item, url: admin_item_path(@item) do |f| %>
+        <p>商品画像 <%= f.file_field :image, accept: "image/*" %> </p>
         <p>商品名 <%= f.text_field :name %> </p>
         <p>商品説明 <%= f.text_area :introduction %> </p>
         <p>ジャンル <%= f.collection_select :genre_id, Genre.all, :id, :name %> </p>

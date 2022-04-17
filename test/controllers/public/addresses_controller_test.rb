@@ -6,23 +6,8 @@ class Public::AddressesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should get edit" do
-    get public_addresses_edit_url
-    assert_response :success
-  end
-
-  test "should get create" do
-    get public_addresses_create_url
-    assert_response :success
-  end
-
-  test "should get update" do
-    get public_addresses_update_url
-    assert_response :success
-  end
-
-  test "should get destroy" do
-    get public_addresses_destroy_url
+  test "should get show" do
+    get public_addresses_show_url
     assert_response :success
   end
 end
