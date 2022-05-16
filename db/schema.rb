@@ -44,8 +44,10 @@ ActiveRecord::Schema.define(version: 2022_04_17_182624) do
     t.string "name"
     t.string "postal_code"
     t.string "address"
+    t.integer "customer_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["customer_id"], name: "index_addresses_on_customer_id"
   end
 
   create_table "admins", force: :cascade do |t|
@@ -62,8 +64,12 @@ ActiveRecord::Schema.define(version: 2022_04_17_182624) do
 
   create_table "cart_items", force: :cascade do |t|
     t.integer "amount"
+    t.integer "customer_id", null: false
+    t.integer "item_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["customer_id"], name: "index_cart_items_on_customer_id"
+    t.index ["item_id"], name: "index_cart_items_on_item_id"
   end
 
   create_table "customers", force: :cascade do |t|
@@ -97,17 +103,22 @@ ActiveRecord::Schema.define(version: 2022_04_17_182624) do
     t.text "introduction"
     t.integer "price"
     t.boolean "is_active"
-    t.integer "genre_id"
+    t.integer "genre_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["genre_id"], name: "index_items_on_genre_id"
   end
 
   create_table "order_items", force: :cascade do |t|
     t.integer "price_at_purchase"
     t.integer "amount"
     t.string "production_status"
+    t.integer "item_id", null: false
+    t.integer "order_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["item_id"], name: "index_order_items_on_item_id"
+    t.index ["order_id"], name: "index_order_items_on_order_id"
   end
 
   create_table "orders", force: :cascade do |t|
@@ -116,12 +127,22 @@ ActiveRecord::Schema.define(version: 2022_04_17_182624) do
     t.string "shipping_name"
     t.integer "postage"
     t.integer "claimed"
-    t.string "amount_billed"
-    t.integer "order_status"
+    t.integer "amount_billed", limit: 1, default: 0, null: false
+    t.integer "order_status", limit: 1, default: 0, null: false
+    t.integer "cart_items_id"
+    t.integer "customer_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["customer_id"], name: "index_orders_on_customer_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "addresses", "customers"
+  add_foreign_key "cart_items", "customers"
+  add_foreign_key "cart_items", "items"
+  add_foreign_key "items", "genres"
+  add_foreign_key "order_items", "items"
+  add_foreign_key "order_items", "orders"
+  add_foreign_key "orders", "customers"
 end

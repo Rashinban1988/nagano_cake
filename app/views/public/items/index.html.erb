@@ -23,8 +23,8 @@
 						<tr>
 						  <td>
 						    <%= link_to item_path(item) do %>
-  								<% if item.image.attached? %>
-  							    <%= image_tag item.image, size: "50x50" %>
+  								<% if item.item_image.attached? %>
+  							    <%= image_tag item.item_image, size: "50x50" %>
   							  <% else %>
   							    <%= image_tag 'no_image', size: "50x50" %>
   							  <% end %>

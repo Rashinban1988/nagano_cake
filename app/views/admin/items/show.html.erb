@@ -11,8 +11,8 @@
 						<tr>
 							<td>商品画像</td>
 							<td>
-								<% if @item.image.attached? %>
-							    <%= image_tag @item.image, size: "100x100" %>
+								<% if @item.item_image.attached? %>
+							    <%= image_tag @item.item_image, size: "100x100" %>
 							  <% else %>
 							    <%= image_tag 'no_image', size: "100x100" %>
 							  <% end %>
@@ -53,6 +53,7 @@
 								<% end %>
 							</td>
 						</tr>
+						<%= link_to "編集画面へ", edit_admin_item_path(@item) %>
 					</tbody>
 				</table>
 			</div>

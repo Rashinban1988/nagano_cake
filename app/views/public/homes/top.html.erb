@@ -1,5 +1,42 @@
 <div class="container">
-  <div class="row mt-5">
-    <h2>長野ケーキへようこそ！</h2>
+  <div class="row">
+    <div class="col-2">
+
+    </div>
+    <div class="col-10">
+      <div class="top_image">
+        <div class="top_box">
+          <p class="top_text m-5 px-5">
+            ようこそ、ながのCAKEへ！<br>
+            このサイトは、ケーキ販売のECサイトになります。<br>
+            会員でない方も商品の閲覧はできますが、<br>
+            購入には会員登録が必要になります。<br>
+          </p>
+        </div>
+      </div>
+
+      <div class="row mt-3 ml-1">
+        <h3>新着商品</3>
+      </div>
+
+      <div class="row mt-3 mb-3">
+        <% @items.each do |item| %>
+        <div class="col-3">
+          <% if item.item_image.attached? %>
+				    <%= image_tag item.item_image, size: "50x50" %>
+				  <% else %>
+				    <%= image_tag 'no_image', size: "50x50" %>
+				  <% end %><br>
+          <%= item.name %><br>
+          ¥<%= item.price.to_s(:delimited) %>
+        </div>
+        <% end %>
+      </div>
+
+      <div class="row d-flex justify-content-end mb-10">
+        <%= link_to "全ての商品を見る＞", items_path %>
+      </div>
+
+    </div>
   </div>
 </div>

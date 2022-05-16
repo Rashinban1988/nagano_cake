@@ -11,8 +11,8 @@
 						<tr>
 							<td>商品画像</td>
 							<td>
-								<% if @item.image.attached? %>
-							    <%= image_tag @item.image, size: "100x100" %>
+								<% if @item.item_image.attached? %>
+							    <%= image_tag @item.item_image, size: "100x100" %>
 							  <% else %>
 							    <%= image_tag 'no_image', size: "100x100" %>
 							  <% end %>
@@ -55,6 +55,23 @@
 						</tr>
 					</tbody>
 				</table>
+				<div class="row">
+          <div class="offset-2">
+
+            <div class="row">
+              <%= form_with model: @cart_item do |f| %>
+                <%= f.select :amount, *[1..10], min:1, placeholder: "個数選択" %><span>個</span>
+                <%= f.hidden_field :item_id, :value => @item.id %></br>
+                <%= f.submit "カートに入れる", class: "btn btn-sm btn-outline-primary" %>
+          　　<% end %>
+            </div>
+
+            <div class="row">
+              <%= flash[:into_cart_error] %>
+            </div>
+
+          </div>
+        </div>
 			</div>
 		</div>
 	</div>

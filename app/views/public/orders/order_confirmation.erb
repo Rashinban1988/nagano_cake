@@ -1,0 +1,83 @@
+<div class="container">
+  <div class="row">
+    <h2>注文情報確認</h2>
+  </div>
+  <div class="row">
+    <div class="col-lg-8">
+      <table class="table table-hover table-inverse table-bordered">
+        <thead>
+          <tr>
+           <th>商品名</th>
+           <th>単価（税込）</th>
+           <th>数量</th>
+           <th>小計</th>
+          </tr>
+        </thead>
+        <tbody>
+         <% @cart_items.each do |cart_items| %>
+          <tr>
+            <td><%= image_tag cart_items.item.item_image, style:"height:80px; width:80px",class:"mr-3" %><%= cart_items.item.name %></td>
+            <td><%= (cart_items.item.price * 1.1).to_i%></td>
+            <td><%= cart_items.amount %></td>
+            <td><%= (cart_items.item.price  * 1.1 * cart_items.amount).to_i  %>
+                <% @total = @total+  (cart_items.item.price  * 1.1 * cart_items.amount).to_i %>
+            </td>
+          </tr>
+         <% end %>
+        </tbody>
+     </table>
+    </div>
+     <div class="col-lg-4" >
+        <table class="table table-bordered">
+          <tbody>
+            <tr>
+              <td class="active">送料</td>
+              <td><%= @order.postage%></td>
+            </tr>
+            <tr>
+              <td class="active">商品合計</td>
+
+              <th><%=@total %></th>
+            </tr>
+            <tr>
+              <td class="active">請求合計</td>
+              <td><%=  @order.postage + @total%></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+   </div>
+   <div class="row">
+     <div class="col-lg-8">
+        <table class="table table-borderless">
+          <tbody>
+            <tr>
+              <th >支払い方法</th>
+              <td><%= @order.amount_billed_i18n %></td>
+            </tr>
+            <tr>
+              <th scope="row">お届け先</th>
+              <td>
+                <p><%= @order.shipping_postal_code %><%= @order.shipping_address %></p>
+                <p><%= @order.shipping_name %></p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+     </div>
+   </div>
+   <div class="row">
+     <div class="col-12 mx-auto">
+      <%= form_with(model: Order, url: orders_path, method: :post) do |f| %>
+        <%= f.hidden_field :customer_id, :value => current_customer.id %>
+        <%= f.hidden_field :shipping_address, :value  => @order.shipping_address %>
+        <%= f.hidden_field :shipping_postal_code, :value  => @order.shipping_postal_code %>
+        <%= f.hidden_field :shipping_name, :value  => @order.shipping_name %>
+        <%= f.hidden_field :amount_billed, :value  => @order.amount_billed %>
+        <%= f.hidden_field :postage, :value  => @order.postage %>
+        <%= f.hidden_field :claimed, :value  => @order.postage + @total %>
+        <%= f.submit "注文を確定する",class:"btn btn-success d-flex mx-auto" %>
+      <% end %>
+     </div>
+   </div>
+</div>

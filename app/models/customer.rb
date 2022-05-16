@@ -4,8 +4,9 @@ class Customer < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :addresses
-  has_many :cart_items
+  has_many :addresses, dependent: :destroy
+  has_many :cart_items, dependent: :destroy
+  has_many :orders, dependent: :destroy
 
   validates :first_name,       presence: true
   validates :last_name,        presence: true
@@ -15,5 +16,9 @@ class Customer < ApplicationRecord
   validates :address,          presence: true
   validates :telephone_number, presence: true, uniqueness: true
   validates :email,            presence: true, uniqueness: true
+
+  def my_address
+    "　〒 " + postal_code.insert(3, '-') + address + last_name + first_name
+  end
 
 end

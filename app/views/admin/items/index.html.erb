@@ -23,13 +23,11 @@
 					<% @items.each do |item| %>
 						<tr>
 							<td>
-								<%= link_to item_path(item) do %>
-									<% if item.image.attached? %>
-								    <%= image_tag item.image, size: "50x50" %>
-								  <% else %>
-								    <%= image_tag 'no_image', size: "50x50" %>
-								  <% end %>
-								<% end %>
+								<% if item.item_image.attached? %>
+							    <%= image_tag item.item_image, size: "50x50" %>
+							  <% else %>
+							    <%= image_tag 'no_image', size: "50x50" %>
+							  <% end %>
 							</td>
 							<td>
 								<%= item.id %>
