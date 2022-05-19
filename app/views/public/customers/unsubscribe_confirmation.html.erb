@@ -1,23 +1,10 @@
-<div class="container">
-  <div class="row">
-    <h4>退会確認画面</h4>
-  </div>
-
-  <!--<div class="row">-->
-  <!--  <%= form_with model: @customer, url: unsubscribe_confirmation_path(@customer), method: :patch do |f| %>-->
-  <!--    <div class="col-xs-8">-->
-  <!--      <p><%= f.select :is_deleted, { "退会する": true, "退会をやめる": false } %></p>-->
-  <!--      <%= f.submit "最終確認", class: "btn btn-sm btn-danger" %>-->
-  <!--      <%= link_to "最終確認", unsubscribe_path(@customer), method: :patch, class: "btn btn-sm btn-danger" %>-->
-  <!--    </div>-->
-  <!--  <% end %>-->
-  <!--</div>-->
-  <div class="row">
-    <div class="offset-3 col-2">
-    <%= link_to "退会しない" ,customer_path(current_customer), class: "btn btn-sm btn-outline-danger" %>
-    </div>
-    <div class="offset-2 col-2">
-    <%= link_to "退会する" , unsubscribe_path(@customer),method: :patch, class: "btn btn-sm btn-outline-danger", data: { confirm: "退会するとこのユーザー情報はみれなくなります。本当に退会しますか？" } %>
-    </div>
+<div class="text-center">
+  <div class="mt-5">
+    <h5 class="p-5 font-weight-bold">本当に退会しますか？</h5>
+    <p class="font-weight-bold">退会すると、会員登録情報や</p>
+    <p class="font-weight-bold">これまでの購入履歴が閲覧できなくなります。</p>
+    <p class="font-weight-bold mb-5">退会する場合は、「退会する」をクリックしてください。</p>
+    <%= link_to "退会しない", customer_path(current_customer), class: 'btn btn-primary mr-3 px-4' %>
+    <%= link_to "退会する", unsubscribe_path(@customer), method: :patch, "data-confirm" => "本当に退会しますか？", class: 'btn btn-danger px-4' %>
   </div>
 </div>

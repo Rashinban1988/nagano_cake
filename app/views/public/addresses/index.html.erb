@@ -1,9 +1,7 @@
 <div class="container">
 
-	<div class="row">
-		<div class="col-xs-10">
-			<h1>配送先一覧</h1>
-		</div>
+	<div class="row offset-1 my-4">
+		<h5 class="bg-light px-3">配送先登録/一覧</h5>
 	</div>
 
 	<div class="row">
@@ -23,33 +21,36 @@
 		</div>
 	</div>
 
-	<div class="row">
-		<div class="col-xs-10">
-			<table class="table table-hover table-resposive">
-				<thead>
-					<tr class="active">
-						<th>氏名</th>
-						<th>郵便番号</th>
-						<th>住所</th>
-					</tr>
-				</thead>
-				<tbody>
-					<% @addresses.each do |address| %>
-						<tr>
-							<td>
-								<%= address.name %>
-							</td>
-							<td>
-								<%= address.postal_code %>
-							</td>
-							<td>
-								<%= address.address %>
-							</td>
-						</tr>
-					<% end %>
-				</tbody>
-			</table>
-		</div>
-	</div>
+	<div class="row col-10 my-5">
+    <table class="table table-bordered border-dark">
+      <thead>
+        <tr>
+          <th class="table-bordered bg-light">郵便番号</th>
+          <th class="table-bordered bg-light">住所</th>
+          <th class="table-bordered bg-light">宛名</th>
+          <th class="table-bordered bg-light"></th>
+        </tr>
+      </thead>
+      <% @addresses.each do |address| %>
+      <tbody>
+        <tr>
+          <td>
+            <%= address.postal_code %>
+          </td>
+          <td>
+            <%= address.address %>
+          </td>
+          <td>
+            <%= address.name %>
+          </td>
+          <td class="text-center">
+            <%= link_to "編集する", edit_addresses_path(address.id), class: 'btn btn-sm btn-success' %>
+            <%= link_to "削除する", addresses_path(address), method: :delete, "data-confirm" => "本当に消しますか？", class: 'btn btn-sm btn-danger' %>
+          </td>
+        </tr>
+      </tbody>
+      <% end %>
+    </table>
+  </div>
 
 </div>

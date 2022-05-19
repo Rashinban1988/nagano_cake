@@ -4,6 +4,7 @@ class Public::OrdersController < ApplicationController
     @orders = Order.all
     @order = Order.new
     @address = current_customer.address
+    @customer = Customer.find(current_customer.id)
   end
 
   def index

@@ -12,3 +12,32 @@
 .mt-3, .my-3 {
   margin-top: none;
 }
+
+.img-index {
+  width: 195px;
+  height: 95px;
+  object-fit: cover;
+}
+
+.img-show {
+  width: 300px;
+  height: 200px;
+  object-fit: cover;
+}
+
+.img-cart_item-index {
+  width: 70px;
+  height: 50px;
+  object-fit: cover;
+}
+
+.img-confirmation {
+  width: 40px;
+  height: 20px;
+  object-fit: cover;
+}
+
+.item-show-table {
+  border-collapse: separate;
+  border-spacing: 10px;
+}

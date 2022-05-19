@@ -29,7 +29,7 @@ Rails.application.routes.draw do
   get '/addresses' => "public/addresses#index", as: "addresses"
   get '/addresses/:id/edit' => "public/addresses#edit", as: "edit_addresses"
   post '/addresses' => "public/addresses#create"
-  patch '/addresses/:id' => "public/addresses#update"
+  patch '/addresses/:id' => "public/addresses#update", as: "update_addresses"
   delete '/addresses/:id' => "public/addresses#destroy"
 
   #顧客page orders

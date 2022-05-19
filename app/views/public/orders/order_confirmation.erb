@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <h2>注文情報確認</h2>
+    <h5 class="bg-light px-3 offset-1 mt-3">注文情報確認</h5>
   </div>
   <div class="row">
     <div class="col-lg-8">
@@ -16,18 +16,18 @@
         <tbody>
          <% @cart_items.each do |cart_items| %>
           <tr>
-            <td><%= image_tag cart_items.item.item_image, style:"height:80px; width:80px",class:"mr-3" %><%= cart_items.item.name %></td>
+            <td><%= image_tag cart_items.item.item_image, class: "mr-3 img-confirmation" %><%= cart_items.item.name %></td>
             <td><%= (cart_items.item.price * 1.1).to_i%></td>
             <td><%= cart_items.amount %></td>
             <td><%= (cart_items.item.price  * 1.1 * cart_items.amount).to_i  %>
-                <% @total = @total+  (cart_items.item.price  * 1.1 * cart_items.amount).to_i %>
+              <% @total = @total+  (cart_items.item.price  * 1.1 * cart_items.amount).to_i %>
             </td>
           </tr>
          <% end %>
         </tbody>
-     </table>
+      </table>
     </div>
-     <div class="col-lg-4" >
+      <div class="col-lg-4" >
         <table class="table table-bordered">
           <tbody>
             <tr>
@@ -46,28 +46,25 @@
           </tbody>
         </table>
       </div>
-   </div>
-   <div class="row">
-     <div class="col-lg-8">
-        <table class="table table-borderless">
-          <tbody>
-            <tr>
-              <th >支払い方法</th>
-              <td><%= @order.amount_billed_i18n %></td>
-            </tr>
-            <tr>
-              <th scope="row">お届け先</th>
-              <td>
-                <p><%= @order.shipping_postal_code %><%= @order.shipping_address %></p>
-                <p><%= @order.shipping_name %></p>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-     </div>
-   </div>
-   <div class="row">
-     <div class="col-12 mx-auto">
+    </div>
+    <div class="row">
+      <div class="col-lg-8 ml-3">
+        <div class="row my-3">
+          <h5><strong>支払方法</strong></h5>
+          <p class="ml-3"><%= @order.amount_billed_i18n %></p>
+        </div>
+        <div class="row mt-3">
+          <h5><strong>お届け先</strong></h5>
+          <p class="ml-3"><%= @order.shipping_postal_code %><%= @order.shipping_address %></p>
+        </div>
+        <div class="row">
+          <h5><strong>　　　　</strong></h5>
+          <p class="ml-3"><%= @order.shipping_name %></p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 mx-auto">
       <%= form_with(model: Order, url: orders_path, method: :post) do |f| %>
         <%= f.hidden_field :customer_id, :value => current_customer.id %>
         <%= f.hidden_field :shipping_address, :value  => @order.shipping_address %>

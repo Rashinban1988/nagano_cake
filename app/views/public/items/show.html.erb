@@ -1,78 +1,41 @@
 <div class="container">
-	<div class="row">
-			<h1>商品詳細</h1>
-	</div>
+	<div class="row mt-5">
 
-	<div class="row">
-		<div class="col-xs-8">
-			<div class="table-responsive">
-				<table class="table text-nowrap">
-					<tbody>
-						<tr>
-							<td>商品画像</td>
-							<td>
-								<% if @item.item_image.attached? %>
-							    <%= image_tag @item.item_image, size: "100x100" %>
-							  <% else %>
-							    <%= image_tag 'no_image', size: "100x100" %>
-							  <% end %>
-							</td>
-						</tr>
-						<tr>
-							<td>商品名</td>
-							<td>
-								<%= @item.name %>
-							</td>
-						</tr>
-						<tr>
-							<td>商品説明</td>
-							<td>
-								<%= @item.introduction %>
-							</td>
-						</tr>
-						<tr>
-							<td>ジャンル</td>
-							<td>
-								<%= @item.genre.name %>
-							</td>
-						</tr>
-						<tr>
-							<td>税抜価格</td>
-							<td>
-								<%= @item.price %>円
-							</td>
-						</tr>
-						<tr>
-							<td>販売ステータス</td>
-							<td>
-								<% if @item.validate == true %>
-									<%# tdで囲まれているため<%=>の削除 %>
-									販売中
-								<% else %>
-									売り切れ
-								<% end %>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-				<div class="row">
-          <div class="offset-2">
+		<div class="col-2">
+		</div>
 
-            <div class="row">
-              <%= form_with model: @cart_item do |f| %>
-                <%= f.select :amount, *[1..10], min:1, placeholder: "個数選択" %><span>個</span>
-                <%= f.hidden_field :item_id, :value => @item.id %></br>
-                <%= f.submit "カートに入れる", class: "btn btn-sm btn-outline-primary" %>
-          　　<% end %>
+    <div class="col-4">
+        <%= image_tag @item.item_image, class: "img-show" %>
+    </div>
+    <div class="col-6">
+        <h2 class="fw-bold mb-3"><%= @item.name %></h2>
+        <p class="h4 mb-5"><%= @item.introduction %></p><br>
+        <p class="h4 mt-2"><span class="h4">¥<%= @item.price.to_s(:delimited) %></span><span class="h6">(税込)</span></p>
+    <% if @item.validate == true %>
+    	<%= form_with model: @cart_item do |f| %>
+      <div class="row mt-4">
+        <div class="col-3">
+          <div class="form-group">
+            <div>
+              <%= f.select :amount, *[1..10], { include_blank: '個数選択' }, autofocus: true, autocomplete: "amount", style: "width:100%", class: "btn btn-primary dropdown-toggle py-1" %>
+              <%= f.hidden_field :item_id, :value => @item.id %>
             </div>
-
-            <div class="row">
-              <%= flash[:into_cart_error] %>
-            </div>
-
           </div>
         </div>
-			</div>
-		</div>
-	</div>
+        <div class="col-3">
+          <div class="form-group">
+            <%= f.submit "カートに入れる", class: 'btn btn-sm btn-success' %>
+          </div>
+      　</div>
+      </div>
+      <div class="row field_with_errors">
+        <%= flash[:into_cart_error] %>
+      </div>
+      <% end %>
+    <% else %>
+      <%= "販売停止中" %>
+    <% end %>
+    </div>
+
+  </div>
 </div>

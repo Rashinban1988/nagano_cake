@@ -102,7 +102,7 @@ ActiveRecord::Schema.define(version: 2022_04_17_182624) do
     t.string "name"
     t.text "introduction"
     t.integer "price"
-    t.boolean "is_active"
+    t.boolean "is_active", default: true
     t.integer "genre_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -112,7 +112,7 @@ ActiveRecord::Schema.define(version: 2022_04_17_182624) do
   create_table "order_items", force: :cascade do |t|
     t.integer "price_at_purchase"
     t.integer "amount"
-    t.string "production_status"
+    t.integer "production_status", limit: 3, default: 0, null: false
     t.integer "item_id", null: false
     t.integer "order_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -128,7 +128,7 @@ ActiveRecord::Schema.define(version: 2022_04_17_182624) do
     t.integer "postage"
     t.integer "claimed"
     t.integer "amount_billed", limit: 1, default: 0, null: false
-    t.integer "order_status", limit: 1, default: 0, null: false
+    t.integer "order_status", limit: 4, default: 0, null: false
     t.integer "cart_items_id"
     t.integer "customer_id", null: false
     t.datetime "created_at", precision: 6, null: false

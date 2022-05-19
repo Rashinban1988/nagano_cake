@@ -58,3 +58,4 @@ gem 'devise'
 gem 'faker'
 gem "enum_help"
 gem 'pry-byebug', group: :development
+gem 'kaminari'

@@ -28,7 +28,7 @@ class Public::SessionsController < Devise::SessionsController
   # end
     protected
     def after_sign_in_path_for(resource)
-      root_path #任意のページ
+      customer_path(current_customer) #任意のページ
     end
 
     protected
@@ -41,9 +41,8 @@ class Public::SessionsController < Devise::SessionsController
       ## 【処理内容2】 取得したアカウントのパスワードと入力されたパスワードが一致してるかを判別
       if @customer.valid_password?(params[:customer][:password])
         ## 【処理内容3】
-        if true && !@customer.is_deleted
+        if @customer.valid_password?(params[:customer][:password]) && (@customer.is_deleted == 'true')
 
-        elsif true && @customer.is_deleted
           redirect_to new_customer_registration_path, alert: "こちらのユーザーは退会済みとなっております。再度新規登録をお願いします"
         else
         end

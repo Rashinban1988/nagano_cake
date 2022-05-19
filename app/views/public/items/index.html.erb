@@ -1,61 +1,36 @@
 <div class="container">
 	<div class="row">
-		<div class="col-xs-10">
-			<h1>商品一覧</h1>
+
+		<div class="col-2">
 		</div>
-	</div>
-	<div class="row">
-		<div class="col-xs-10">
-			<table class="table table-hover table-resposive">
-				<thead>
-					<tr class="active">
-					  <th>商品画像</th>
-						<th>商品ID</th>
-						<th>商品名</th>
-						<th>商品説明文</th>
-						<th>税抜価格</th>
-						<th>ジャンル</th>
-						<th>販売ステータス</th>
-					</tr>
-				</thead>
-				<tbody>
-					<% @items.each do |item| %>
-						<tr>
-						  <td>
-						    <%= link_to item_path(item) do %>
-  								<% if item.item_image.attached? %>
-  							    <%= image_tag item.item_image, size: "50x50" %>
-  							  <% else %>
-  							    <%= image_tag 'no_image', size: "50x50" %>
-  							  <% end %>
-  							<% end %>
-							</td>
-							<td>
-								<%= item.id %>
-							</td>
-							<td>
-								<%= item.name %>
-							</td>
-							<td>
-								<%= item.introduction %>
-							</td>
-							<td>
-								<%= item.price %>
-							</td>
-							<td>
-								<%= item.genre.name %>
-							</td>
-							<td>
-								<% if item.validate == true %>
-									<%= "販売中" %>
-								<% else %>
-									<%= "売り切れ" %>
-								<% end %>
-							</td>
-						</tr>
-					<% end %>
-				</tbody>
-			</table>
+
+		<div class="col-10 mb-10">
+
+			<div class="row mt-3 ml-1">
+        <h3>商品一覧（全件）</3>
+      </div>
+
+      <div class="row mt-1 mb-3">
+        <% @items.each do |item| %>
+        <div class="col-3 mb-3">
+        	<%= link_to item_path(item.id) do %>
+	          <% if item.item_image.attached? %>
+					    <%= image_tag item.item_image, class: "img-index" %>
+					  <% else %>
+					    <%= image_tag 'no_image' %>
+					  <% end %><br>
+	          <%= item.name %>
+          <% end %><br>
+          ¥<%= item.price.to_s(:delimited) %>
+        </div>
+        <% end %>
+      </div>
+
+			<div class="row d-flex justify-content-center mb-5">
+				<%= paginate(@items) %>
+			</div>
+
 		</div>
+
 	</div>
 </div>

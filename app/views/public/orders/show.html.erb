@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row col-12">
-    <div class="row offset-1 my-3">
-      <h3 class="bg-light px-3">注文履歴詳細</h3>
+    <div class="row offset-1 my-4">
+      <h5 class="bg-light px-3">注文履歴詳細</h5>
     </div>
     <div class="row col-12 my-3">
       <div class="col-8">
@@ -54,7 +54,6 @@
       <div class="row col-11 my-3">
         <label class="font-weight-bold">注文内容</label>
         <table class="table table-bordered border-dark">
-          <% @order_items.each do |order_item| %>
           <thead class="table-bordered bg-light">
             <tr>
               <th class="col-7">商品</th>
@@ -63,9 +62,10 @@
               <th>小計</th>
             </tr>
           </thead>
+          <% @order_items.each do |order_item| %>
           <tbody>
             <tr>
-              <td class="col-7"><%= order_item.items.name %></td>
+              <td class="col-7"><%= order_item.item.name %></td>
               <td><%= order_item.price_at_purchase %></td>
               <td><%= order_item.amount %></td>
               <td><%= order_item.subtotal %></td>

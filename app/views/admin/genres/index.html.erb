@@ -1,33 +1,40 @@
 <div class="container">
   <div class="row">
-    <div class="col-xs-12">
-      <h1>ジャンル一覧・追加</h1>
-      <br>
-      <div class="form-horizontal" role="form">
-        <%= form_with model:  @genre, url: admin_genres_path do |f| %>
-          <div class="form-group">
-            <div class="col-xs-12">
-              <%= f.label :name, "ジャンル名を入力"%>
-              <%= f.text_field :name, autofocus: true %>
-              <%= f.submit "追加", class: "btn btn-primary" %>
-            </div>
-          </div>
-        <% end %>
+    <div class="col-12">
+      <div class="row offset-1 my-5">
+        <h5 class="bg-light px-3">ジャンル一覧・追加</h5>
       </div>
-      <br>
-      <br>
-      <div class="row">
-        <div class="col-xs-12">
+      <div class="row my-3">
+        <div class="col-12">
+          <%= form_with model: @genre, url: admin_genres_path, method: :post do |f| %>
+
+          <div class="form-group">
+            <%= f.label "ジャンル名", class: 'font-weight-bold ml-4 mr-5' %>
+            <%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "ジャンル名", class: 'col-2 mr-5' %>
+            <%= f.submit "新規登録", class: 'btn btn-success px-4 py-2' %>
+          </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="row my-3">
+        <div class="col-4">
           <table class="table">
-            <tr>
-              <td><strong>ジャンル名一覧</strong></td>
-              <th></th>
-            </tr>
-            <% @genres.each do |genre| %>
+            <thead class="bg-light">
               <tr>
-                <td><%= genre.name %></td>
-                <td><%= link_to "名前変更", edit_admin_genre_path(genre.id), class: "btn btn-primary"  %></td>
+                <th colspan="2">　　ジャンル名</th>
               </tr>
+            </thead>
+            <% @genres.each do |genre| %>
+            <tbody>
+              <tr>
+                <td>
+                  <%= genre.name %>
+                </td>
+                <td>
+                  <%= link_to "編集する", edit_admin_genre_path(genre.id), class: 'btn btn-success ml-5' %>
+                </td>
+              </tr>
+            </tbody>
             <% end %>
           </table>
         </div>
